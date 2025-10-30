@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Carga Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de la fuente Inter (sigue siendo excelente para esto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Carga de fuente Mono (limpia y legible) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <title>Práctica 1</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Fondo oscuro principal */
+            background-color: #111827; /* gray-900 */
+        }
+        
+        .font-mono-report {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Estilo para el "ticker" de noticias */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: #000; /* Negro puro */
+            color: white;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid #374151; /* gray-700 */
+            
+            /* --- MODIFICACIÓN --- */
+            position: sticky; /* Fija la barra */
+            top: 0;          /* La pega en la parte superior */
+            z-index: 50;     /* Se asegura que esté por encima de otro contenido */
+            /* --- FIN MODIFICACIÓN --- */
+        }
+        
+        .ticker-move {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: ticker 25s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+            letter-spacing: 0.05em;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Línea "EN VIVO" - esta vez más sutil */
+        .live-text {
+            color: #ef4444; /* red-500 */
+            font-weight: 700;
+            animation: pulse-text 1.5s infinite;
+        }
+        
+        @keyframes pulse-text {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* Efecto de fondo sutil, como un monitor viejo */
+        .main-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)),
+                              url(https://placehold.co/10x10/000000/FFF?text=.&css=%7B%22opacity%22%3A%220.02%22%7D);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Ticker de Noticias -->
+    <div class="ticker-wrap shadow-lg">
+        <div class="ticker-move">
+            <span class="ticker-item"><span class="live-text mr-2">// EN VIVO</span> TÓPICOS DE TECNOLOGÍAS DE DATOS</span>
+            <span class="ticker-item">CASO DE ESTUDIO: POWER BI</span>
+            <span class="ticker-item">UAEM VALLE DE CHALCO - 9NO SEMESTRE</span>
+            <span class="ticker-item"><span class="live-text mr-2">// EN VIVO</span> TÓPICOS DE TECNOLOGÍAS DE DATOS</span>
+            <span class="ticker-item">CASO DE ESTUDIO: POWER BI</span>
+            <span class="ticker-item">UAEM VALLE DE CHALCO - 9NO SEMESTRE</span>
+        </div>
+    </div>
+
+    <!-- Contenedor Principal -->
+    <div class="container main-container mx-auto max-w-6xl p-5 mt-8 relative">
+        
+        <!-- Cabecera y Título -->
+        <header class="mb-8 p-6 bg-gray-800 rounded-lg shadow-xl border-t-4 border-blue-500 relative overflow-hidden">
+            <span class="font-mono-report absolute top-3 right-5 text-yellow-400 text-sm font-bold opacity-75 tracking-wider">
+                [ INVESTIGACIÓN ]
+            </span>
+            <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight">
+                POWER BI
+            </h1>
+            <p class="text-2xl text-blue-400 mt-1 font-mono-report">Práctica 1</p>
+        </header>
+
+        <!-- Contenido Principal (Diseño de 2 columnas) -->
+        <div class="flex flex-col lg:flex-row gap-8 lg:items-start">
+
+            <!-- Columna de Información (Izquierda) - "El Expediente" -->
+            <aside class="lg:w-1/3 w-full bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
+                <h3 class="font-mono-report text-xl text-blue-400 font-bold mb-4 border-b border-blue-900 pb-2">
+                    / FICHA DE CASO /
+                </h3>
+                <div class="space-y-4 text-white">
+                    <div>
+                        <strong class="block text-gray-400 text-sm font-mono-report">UNIVERSIDAD:</strong>
+                        <span>UAEM Valle de Chalco</span>
+                    </div>
+                    <div>
+                        <strong class="block text-gray-400 text-sm font-mono-report">UNIDAD DE APRENDIZAJE:</strong>
+                        <span>Tópicos de tecnologías de datos</span>
+                    </div>
+                    <div>
+                        <strong class="block text-gray-400 text-sm font-mono-report">LICENCIATURA:</strong>
+                        <span>Ingeniería en Tecnologías de la Información</span>
+                    </div>
+                    <div>
+                        <strong class="block text-gray-400 text-sm font-mono-report">SEMESTRE:</strong>
+                        <span>9no Semestre</span>
+                    </div>
+                    <div>
+                        <strong class="block text-gray-400 text-sm font-mono-report">DOCENTE:</strong>
+                        <span>Dra. en T.I.E. Adriana Bustamante Almaraz</span>
+                    </div>
+                    
+                    <!-- Sección Alumnos -->
+                    <div class="border-t border-gray-700 pt-4 mt-4">
+                        <strong class="block text-gray-400 text-sm font-mono-report mb-2">ESTUDIANTES:</strong>
+                        <ul class="list-none space-y-1">
+                            <li><span class="text-blue-400 mr-2">&gt;</span> González Espinosa, Juan Manuel</li>
+                            <li><span class="text-blue-400 mr-2">&gt;</span> Martínez Pérez, Nelly Esmeralda</li>
+                            <li><span class="text-blue-400 mr-2">&gt;</span> Pérez Paredes, Angel Luis</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Columna de Contenido (Derecha) - "El Informe" -->
+            <main class="lg:w-2/3 w-full">
+                <!-- Sección de Introducción -->
+                <article class="bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl border border-gray-700">
+                    <h2 class="text-3xl font-bold text-white mb-4 border-b-2 border-blue-500 pb-2">
+                        Introducción
+                    </h2>
+                    <div class="text-lg leading-relaxed text-gray-200 space-y-5 text-justify">
+                        <p>
+                            Power BI es una <strong class="text-blue-300 font-semibold">plataforma de análisis empresarial (business intelligence)</strong> de Microsoft que permite <strong class="text-blue-300 font-semibold">conectar, transformar, visualizar y compartir datos</strong> para convertirlos en información procesable.
+                        </p>
+                        <p>
+                            Es una solución de autoservicio que facilita la creación de informes interactivos y paneles de control, permitiendo a los usuarios tomar decisiones informadas de forma rápida, incluso sin ser expertos en programación.
+                        </p>
+                        
+                        <div id="content-area" class="mt-8 pt-6 border-t border-gray-700 space-y-8">
+                            
+                            <!-- Imagen de Logo Power BI -->
+                            <figure class="flex flex-col items-center">
+                                <img src="images/logo.png" 
+                                     alt="Logo de Power BI" 
+                                     class="rounded-lg shadow-lg border-2 border-gray-700 max-w-md w-full"
+                                     onerror="this.src='https://placehold.co/600x400/1f2937/374151?text=Error+al+cargar+logo.png'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-3 font-mono-report">/ Fuente: Microsoft Power BI /</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </article>
+                
+            </main>
+            <!-- FIN Columna de Contenido (Derecha) -->
+        </div>
+        <!-- FIN Contenido Principal (Diseño de 2 columnas) -->
+
+        <!-- INICIO DE SECCIONES A TODO LO ANCHO -->
+
+        <!-- Evidencia 1: Power BI Mobile -->
+        <article class="bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl border border-gray-700 mt-8">
+            <h2 class="text-3xl font-bold text-white mb-4 border-b-2 border-blue-500 pb-2">
+                Power BI Mobile
+            </h2>
+                <div class="text-lg leading-relaxed text-gray-200 space-y-5 text-justify">
+                    <p>
+                        La aplicación móvil de Microsoft Power BI te permite acceder de forma segura y ver tus datos empresariales en vivo desde cualquier dispositivo con sistemas operativos iOS o Android.
+                    </p>
+                </div>
+                <!-- Aquí irá el contenido de esta sección -->
+                <div id="mobile-content-area" class="mt-6 pt-6 border-t border-gray-700 space-y-8">
+                    
+                    <!-- Evidencia 1.1: Pantalla de Inicio -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen (MODIFICADA) -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Marco de teléfono para contener la imagen alta -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-1.jpg" 
+                                     alt="Evidencia: Pantalla de Inicio de Power BI Mobile" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-1.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Pantalla de inicio /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Pantalla de inicio
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La pantalla de 'Inicio' es el punto de entrada principal. Organiza el contenido en tres pestañas: <strong class="text-blue-300">'Acceso rápido'</strong>, que muestra informes recientes y ejemplos; <strong class="text-blue-300">'Métricas'</strong>, para el seguimiento de KPIs; y <strong class="text-blue-300">'Actividad'</strong>, que registra las últimas notificaciones y actualizaciones. Esto permite al usuario localizar rápidamente la información más relevante.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.2: Pestaña de Métricas -->
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen (MODIFICADA y Reversa) -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Marco de teléfono para contener la imagen alta -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-2.jpg" 
+                                     alt="Evidencia: Pestaña de Métricas" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-2.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Pestaña de Métricas /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción (Reversa) -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Pestaña de Métricas
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                Esta sección está diseñada para el seguimiento centralizado de los KPIs (Indicadores Clave de Rendimiento). Como indica la pantalla, permite a los usuarios "seguir las métricas y supervisarlas en un solo lugar a lo largo del tiempo", facilitando la toma de decisiones basadas en datos. Las puntuaciones y métricas disponibles para el usuario se mostrarán aquí.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.3: Pestaña de Actividad (NUEVA) -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Marco de teléfono para contener la imagen alta -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-3.jpg" 
+                                     alt="Evidencia: Pestaña de Actividad" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-3.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Pestaña de Actividad /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Pestaña de Actividad
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La pestaña de 'Actividad' funciona como un registro de notificaciones y actualizaciones recientes. Aquí los usuarios pueden ver cuándo se han actualizado los informes (como el ejemplo "Revenue Opportunities"), asegurando que estén siempre al tanto de los cambios más importantes en sus datos. Es un centro de información en tiempo real sobre la frescura de los datos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.4: Escáner de Cámara (NUEVA) -->
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen (Reversa) -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Marco de teléfono para contener la imagen alta -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-4.jpg" 
+                                     alt="Evidencia: Escáner de cámara para códigos QR" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-4.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Escáner de cámara /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción (Reversa) -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Escáner y Realidad Aumentada
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La aplicación integra la cámara del dispositivo para <strong class="text-blue-300">escanear códigos QR y códigos de barras</strong>. Esta función permite a los usuarios vincular objetos del mundo real (como maquinaria en una fábrica o productos en un estante) directamente a informes de Power BI. Al escanear un código, la app filtra automáticamente el informe para mostrar solo los datos relevantes a ese objeto específico, facilitando el acceso a "Obtener más información acerca del análisis" en contexto.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.5: Búsqueda (NUEVA) -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Marco de teléfono para contener la imagen alta -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-5.jpg" 
+                                     alt="Evidencia: Función de Búsqueda" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-5.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Función de Búsqueda /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Búsqueda y Acceso Rápido
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La funcionalidad de <strong class="text-blue-300">búsqueda global</strong> permite a los usuarios encontrar rápidamente informes, paneles y aplicaciones dentro de su área de trabajo. Al acceder a la búsqueda, la aplicación también muestra de forma inteligente el contenido <strong class="text-blue-300">"Visitado hoy"</strong>, como el informe "Revenue Opportunities", lo que agiliza el flujo de trabajo y permite reanudar tareas recientes con un solo toque.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.6: Perfil y Configuración (NUEVA) -->
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen (Reversa) -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Marco de teléfono para contener la imagen alta -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-6.jpg" 
+                                     alt="Evidencia: Pantalla de Perfil y Configuración" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-6.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Perfil y Conexiones /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción (Reversa) -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Gestión de Cuenta y Servidor
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                Al tocar la imagen de perfil, se accede a la pantalla de gestión de cuenta. Aquí, el usuario puede ver la cuenta activa (en este caso, "JUAN MANUEL G..." como cuenta gratuita). Esta sección también es crucial para la conectividad, ya que ofrece la opción de <strong class="text-blue-300">"Conectarse al servidor"</strong> para vincular la aplicación a un servidor de informes local (Report Server). Además, en la parte inferior, se encuentra el acceso a la <strong class="text-blue-300">"Configuración"</strong> general de la aplicación.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.7: Pantalla de Configuración (NUEVA) -->
+                    <div class="flex flex-col gap-6 items-center">
+                        <!-- Columna de Descripción -->
+                        <div class="w-full">
+                            <h4 class="text-2xl font-semibold text-white mb-2 text-center md:text-left">
+                                Pantalla de Configuración
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La sección de 'Configuración' proporciona un control granular sobre la aplicación. Se divide en varias categorías clave: <strong class="text-blue-300">Cuentas</strong>, para gestionar el inicio de sesión y la conexión a servidores; <strong class="text-blue-300">Preferencias</strong>, donde se ajustan opciones como las notificaciones, la barra de Copilot y el comportamiento de la pulsación única; <strong class="text-blue-300">Apariencia y Accesibilidad</strong>, para cambiar el tema del sistema y activar el lector de datos; <strong class="text-blue-300">Privacidad y Seguridad</strong>; y finalmente, <strong class="text-blue-300">Ayuda y comentarios</strong> junto con la información "Acerca de", que muestra la versión de la app y el Id. de sesión.
+                            </p>
+                        </div>
+                        
+                        <!-- Columna de Imágenes (Rejilla de 3) -->
+                        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                            
+                            <!-- Imagen 7 -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs mx-auto">
+                                <img src="images/Img-7.jpg" 
+                                     alt="Evidencia: Configuración - Cuentas y Preferencias" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-7.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evid: Cuentas y Preferencias /</figcaption>
+                            </figure>
+                            
+                            <!-- Imagen 8 -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs mx-auto">
+                                <img src="images/Img-8.jpg" 
+                                     alt="Evidencia: Configuración - Apariencia y Privacidad" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-8.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evid: Apariencia y Privacidad /</figcaption>
+                            </figure>
+                            
+                            <!-- Imagen 9 -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs mx-auto">
+                                <img src="images/Img-9.jpg" 
+                                     alt="Evidencia: Configuración - Ayuda y Acerca de" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-9.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evid: Ayuda y Acerca de /</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.8: Aplicaciones (NUEVA Y CORREGIDA) -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Marco de teléfono para contener la imagen alta -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-10.jpg" 
+                                     alt="Evidencia: Pestaña de Aplicaciones" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-10.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Pestaña de Aplicaciones /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Pestaña de Aplicaciones
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La pestaña 'Aplicaciones' es el contenedor de colecciones de contenido de Power BI. Como indica la pantalla, aquí es donde los usuarios pueden <strong class="text-blue-300">"explorar la colección de paneles e informes relacionados, empaquetados y publicados juntos"</strong>. Es un centro para acceder a soluciones de análisis preempaquetadas que combinan múltiples informes y conjuntos de datos en una sola vista coherente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.9: Área de Trabajo (NUEVA) -->
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen (Reversa) -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Marco de teléfono para contener la imagen alta -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-11.jpg" 
+                                     alt="Evidencia: Pestaña de Áreas de Trabajo" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-11.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Mi área de trabajo /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción (Reversa) -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Áreas de Trabajo
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La pestaña 'Áreas de trabajo', como "Mi área de trabajo" en este caso, es el espacio de colaboración y almacenamiento principal. Aquí es donde se organizan los <strong class="text-blue-300">"Informes"</strong> y los <strong class="text-blue-300">"Modelos semánticos"</strong> (anteriormente conocidos como conjuntos de datos). La vista muestra el contenido disponible, como el informe "Revenue Opportunities", indicando cuándo fueron actualizados sus datos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.10: Compartido conmigo (NUEVA) -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Marco de teléfono para contener la imagen alta -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-12.jpg" 
+                                     alt="Evidencia: Pestaña Compartido conmigo" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-12.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Compartido conmigo /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Compartido conmigo
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                Esta sección centraliza todo el contenido que otros usuarios han compartido. Como indica la pantalla, <strong class="text-blue-300">"Los paneles e informes compartidos con usted estarán aquí"</strong>. Esto simplifica la colaboración y el acceso a análisis de otros miembros del equipo sin necesidad de buscarlos en diferentes áreas de trabajo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.11: Menú "Más" (NUEVA) -->
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen (Reversa) -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <!-- Marco de teléfono para contener la imagen alta -->
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-13.jpg" 
+                                     alt="Evidencia: Menú Más páginas" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-13.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Menú "Más" /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción (Reversa) -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Menú "Más páginas"
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                Al pulsar el icono de "Más" (tres puntos) en la barra de navegación inferior, se despliega un menú contextual con acceso a "Más páginas". Este menú incluye accesos directos a secciones importantes como <strong class="text-blue-300">"Reciente"</strong>, <strong class="text-blue-300">"Favoritos"</strong>, contenido <strong class="text-blue-300">"De organizaciones externas"</strong>, la función de <strong class="text-blue-300">"Explorar"</strong> y el centro de <strong class="text-blue-300">"Notificaciones"</strong>, consolidando la navegación secundaria en un solo lugar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.12: Navegación: Reciente -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-14.jpg" 
+                                     alt="Evidencia: Pestaña Reciente" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-14.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Pestaña Reciente /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Navegación: Reciente
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La sección <strong class="text-blue-300">"Reciente"</strong> organiza el contenido visitado recientemente, mostrando específicamente lo que se ha accedido "Hoy". Como se ve en la imagen, incluye elementos como <strong class="text-blue-300">"Revenue Opportunities"</strong> y <strong class="text-blue-300">"Mi área de trabajo"</strong>, permitiendo un acceso rápido a los recursos más utilizados recientemente sin necesidad de buscar en las diferentes áreas de trabajo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.13: Navegación: Favoritos -->
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen (Reversa) -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-15.jpg" 
+                                     alt="Evidencia: Pestaña Favoritos" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-15.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Pestaña Favoritos /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción (Reversa) -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Navegación: Favoritos
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La sección <strong class="text-blue-300">"Favoritos"</strong> actúa como un espacio personalizado donde los usuarios pueden marcar sus informes y paneles más importantes. Como indica la interfaz, "Marque como favorito cualquier elemento de su contenido para encontrarlo rápidamente aquí", proporcionando un acceso instantáneo a los recursos más valiosos sin importar dónde estén almacenados originalmente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.14: Navegación: De organizaciones -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-16.jpg" 
+                                     alt="Evidencia: Pestaña De organizaciones" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-16.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: De organizaciones /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Navegación: De organizaciones
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La sección <strong class="text-blue-300">"De organizaciones"</strong> está diseñada para contenido compartido desde otras organizaciones. Como se muestra, "El contenido de otras organizaciones aparecerá aquí una vez que se comparta con usted", facilitando la colaboración interorganizacional y el acceso a análisis externos sin mezclarlos con el contenido interno.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.15: Navegación: Explorar -->
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen (Reversa) -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-17.jpg" 
+                                     alt="Evidencia: Pestaña Explorar" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-17.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Pestaña Explorar /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción (Reversa) -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Navegación: Explorar
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La sección <strong class="text-blue-300">"Explorar"</strong> incluye "Informes de ejemplo" como <strong class="text-blue-300">"Revenue Opportunities"</strong>, <strong class="text-blue-300">"Regio"</strong> y <strong class="text-blue-300">"Informe (ejemplo)"</strong>. Esta área es ideal para nuevos usuarios que desean familiarizarse con las capacidades de Power BI o para descubrir nuevos enfoques analíticos a través de ejemplos predefinidos.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 1.16: Navegación: Notificaciones -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-18.jpg" 
+                                     alt="Evidencia: Pestaña Notificaciones" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-18.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Pestaña Notificaciones /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Navegación: Notificaciones
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                El centro de <strong class="text-blue-300">"Notificaciones"</strong> centraliza todas las alertas importantes. Como se describe, "Aquí puede ver las alertas de datos y notificaciones push importantes sobre el contenido", asegurando que los usuarios estén siempre informados sobre actualizaciones críticas, cambios en los datos o eventos relevantes que requieran su atención inmediata.
+                            </p>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- **** INICIO DE SECCIÓN MOVILIDA **** -->
+                <!-- Esta sección ahora está DENTRO del article "Power BI Mobile" -->
+                
+                <!-- Separador Visual Fuerte -->
+                <div class="my-16">
+                    <div class="h-0.5 w-full bg-gray-700"></div>
+                    <div class="h-1 w-full max-w-lg mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full -mt-0.5"></div>
+                </div>
+
+                <!-- Sub-Sección: Interacción con Reportes -->
+                <h3 class="text-3xl font-bold text-white mb-4 border-b-2 border-blue-500 pb-2">
+                    Sub-Sección: Interacción con Reportes
+                </h3>
+                <div class="text-lg leading-relaxed text-gray-200 space-y-5 text-justify">
+                    <p>
+                        Una vez dentro de un informe, la aplicación móvil de Power BI ofrece una barra de herramientas inferior con múltiples opciones para la colaboración y el análisis interactivo.
+                    </p>
+                </div>
+            
+                <div id="report-content-area" class="mt-6 pt-6 border-t border-gray-700 space-y-8">
+                    
+                    <!-- Evidencia 2.1: Vista de Reporte y Barra de Herramientas -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-19.jpg" 
+                                     alt="Evidencia: Vista de Reporte y Barra de Herramientas" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-19.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Barra de Herramientas /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Vista de Reporte y Barra de Herramientas
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                Al abrir un informe, se muestra la visualización de datos principal (en este caso, "Revenue Opportunities"). En la parte inferior, una barra de herramientas proporciona acceso rápido a cinco funciones clave: <strong class="text-blue-300">Invitar</strong> (para compartir), <strong class="text-blue-300">Anotar</strong> (para dibujar sobre el informe), <strong class="text-blue-300">Comentarios</strong> (para colaborar), <strong class="text-blue-300">Restablecer</strong> (para volver al estado original) y <strong class="text-blue-300">Páginas</strong> (para navegar entre las páginas del informe).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 2.2: Función de Compartir (Invitar) -->
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen (Reversa) -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-20.jpg" 
+                                     alt="Evidencia: Función de Compartir (Invitar)" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-20.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Licencia Pro Requerida /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción (Reversa) -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Función de Compartir (Invitar)
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                Al intentar <strong class="text-blue-300">"Invitar"</strong> o compartir un informe, la aplicación verifica el tipo de licencia. En este caso, con una cuenta gratuita, aparece un mensaje emergente indicando que <strong class="text-blue-300">"Requiere una licencia de Pro"</strong> para poder compartir contenido. Esto resalta el modelo de licenciamiento de Power BI, donde las funciones de colaboración y distribución están reservadas para los usuarios con licencias de pago.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 2.3: Función de Anotación -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-21.jpg" 
+                                     alt="Evidencia: Función de Anotación" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-21.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Herramientas de Anotación /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Función de Anotación
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La función <strong class="text-blue-300">"Anotar"</strong> permite a los usuarios dibujar, escribir y añadir emojis directamente sobre una captura del informe. Esto es útil para resaltar puntos clave o hacer preguntas específicas sobre los datos. La barra de herramientas de anotación incluye opciones para cambiar el color del lápiz, añadir texto, emojis, un borrador y deshacer acciones.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 2.4: Función de Comentarios -->
+                    <div class="flex flex-col md:flex-row-reverse gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen (Reversa) -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-22.jpg" 
+                                     alt="Evidencia: Función de Comentarios" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-22.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Panel de Comentarios /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción (Reversa) -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Función de Comentarios
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                La sección de <strong class="text-blue-300">"Comentarios"</strong> abre un panel de conversación lateral. Aquí, los usuarios pueden "colaborar con sus compañeros de trabajo agregando comentarios a las páginas y los objetos visuales de un informe". Permite <strong class="text-blue-300">"@mencionar</strong> a usuarios específicos para iniciar una conversación contextualizada sobre los datos que se están visualizando, fomentando el trabajo en equipo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SEPARADOR DE EVIDENCIA MEJORADO -->
+                    <div class="my-12">
+                        <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                    </div>
+
+                    <!-- Evidencia 2.5: Navegación de Páginas -->
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                        <!-- Columna de Imagen -->
+                        <div class="w-full md:w-1/3 flex justify-center">
+                            <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-3 border border-gray-700 shadow-2xl max-h-[70vh] overflow-hidden w-full max-w-xs">
+                                <img src="images/Img-23.jpg" 
+                                     alt="Evidencia: Navegación de Páginas" 
+                                     class="rounded-lg w-auto h-full object-contain"
+                                     onerror="this.src='https://placehold.co/400x800/1f2937/374151?text=Error+al+cargar+Img-23.jpg'; this.onerror=null;">
+                                <figcaption class="text-center text-gray-400 text-sm mt-2 font-mono-report flex-shrink-0 pt-2">/ Evidencia: Menú de Páginas /</figcaption>
+                            </figure>
+                        </div>
+                        <!-- Columna de Descripción -->
+                        <div class="w-full md:w-2/3">
+                            <h4 class="text-2xl font-semibold text-white mb-2">
+                                Navegación de Páginas
+                            </h4>
+                            <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                                El botón <strong class="text-blue-300">"Páginas"</strong> despliega un menú inferior que lista todas las páginas disponibles dentro del informe. En este ejemplo, se muestra la página actual <strong class="text-blue-300">"Opportunity Overview"</strong> (marcada con un check) y la página <strong class="text-blue-300">"Detail"</strong>. Esto permite una navegación rápida y sencilla entre las diferentes vistas y análisis que componen el informe completo.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- **** FIN DE SECCIÓN MOVILIDA **** -->
+
+        </article>
+        <!-- FIN DE SECCIONES A TODO LO ANCHO -->
+
+
+        <!-- **** INICIO NUEVA SECCIÓN DESKTOP **** -->
+        <article class="bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl border border-gray-700 mt-8">
+            <h2 class="text-3xl font-bold text-white mb-4 border-b-2 border-blue-500 pb-2">
+                Power BI Desktop
+            </h2>
+            <div class="text-lg leading-relaxed text-gray-200 space-y-5 text-justify">
+                <p>
+                    Power BI Desktop es la aplicación de creación y generación de informes para Windows. Es donde los analistas y desarrolladores se conectan a las fuentes de datos, transforman y modelan los datos, y diseñan los informes interactivos que luego se publicarán en el servicio de Power BI y se consumirán en aplicaciones móviles.
+                </p>
+            </div>
+            <!-- Aquí irá el contenido de esta sección -->
+            <div id="desktop-content-area" class="mt-6 pt-6 border-t border-gray-700 space-y-8">
+                <!-- Las nuevas evidencias de Desktop irán aquí -->
+                <p class="text-center text-gray-500 font-mono-report">/ Pendiente: Añadir evidencias de Power BI Desktop /</p>
+            </div>
+        </article>
+        <!-- **** FIN NUEVA SECCIÓN DESKTOP **** -->
+
+
+        <!-- Pie de página -->
+        <footer class="text-center mt-12 mb-6 text-gray-600 text-sm font-mono-report">
+            <p>// FIN DEL REPORTE // 2025 //</p>
+        </footer>
+
+    </div>
+</body>
+</html>
+
+

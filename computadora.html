@@ -130,6 +130,27 @@
             font-size: 2rem;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
+
+        /* Estilos para las pestañas */
+        .tab-button {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: #9ca3af;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab-button.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+        }
+
+        .tab-button:hover {
+            color: #60a5fa;
+        }
     </style>
 </head>
 <body class="text-gray-200">
@@ -372,7 +393,7 @@
                         <div class="feature-card p-6 rounded-xl">
                             <div class="flex flex-col items-center text-center space-y-4">
                                 <div class="w-full h-48 bg-gray-900 rounded-lg border border-gray-600 flex items-center justify-center">
-                                    <img src="images/24.jpg" 
+                                    <img src="images/informe-blanco.jpg" 
                                          alt="Informe en blanco" 
                                          class="w-full h-full object-cover rounded-lg"
                                          onerror="this.src='https://placehold.co/300x200/1f2937/fbbf24?text=📄+Informe+en+Blanco'; this.onerror=null;">
@@ -451,7 +472,7 @@
                                     <img src="images/datos-muestra.jpg" 
                                          alt="Datos de muestra" 
                                          class="w-full h-full object-cover rounded-lg"
-                                         onerror="this.src='https://placehold.co/300x200/1f2937/8b5cf6?text=📈+Datos+Muestra'; this.onerror=null;">
+                                         onerror="this.src='https://placeh00/1f2937/8b5cf6?text=📈+Datos+Muestra'; this.onerror=null;">
                                 </div>
                                 <div class="space-y-2">
                                     <div class="flex items-center justify-center gap-2">
@@ -482,6 +503,327 @@
                             </div>
                         </div>
 
+                    </div>
+                </div>
+
+                <!-- SEPARADOR DE EVIDENCIA -->
+                <div class="my-12">
+                    <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                </div>
+
+                <!-- Evidencia 4: Sección "Recomendado" -->
+                <div class="flex flex-col gap-8">
+                    <!-- Título y descripción general -->
+                    <div class="text-center">
+                        <h4 class="text-2xl font-semibold text-white mb-3">
+                            Sección "Recomendado"
+                        </h4>
+                        <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                            Esta parte se encuentra en la zona central de la pantalla de inicio, debajo de "Seleccione un origen de datos". La sección "Recomendado" muestra los elementos a los que el usuario ha tenido acceso recientemente o que están compartidos con él desde la nube de Power BI (Power BI Service).
+                        </p>
+                    </div>
+
+                    <!-- Imagen de la sección completa -->
+                    <div class="flex justify-center mb-8">
+                        <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-4 border border-gray-700 shadow-2xl w-full max-w-4xl">
+                            <img src="images/seccion-recomendado.jpg" 
+                                 alt="Evidencia: Sección Recomendado de Power BI Desktop" 
+                                 class="rounded-lg w-full h-auto object-contain border border-gray-600"
+                                 onerror="this.src='https://placehold.co/800x400/1f2937/374151?text=Sección+Recomendado'; this.onerror=null;">
+                            <figcaption class="text-center text-gray-400 text-sm mt-3 font-mono-report">/ Evidencia: Sección Recomendado /</figcaption>
+                        </figure>
+                    </div>
+
+                    <!-- Función principal -->
+                    <div class="bg-gray-700 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
+                        <h5 class="text-xl font-semibold text-white mb-3 flex items-center gap-2">
+                            <span class="text-2xl">🔹</span> Función principal:
+                        </h5>
+                        <p class="text-gray-200 leading-relaxed">
+                            La sección "Recomendado" muestra los elementos a los que el usuario ha tenido acceso recientemente o que están compartidos con él desde la nube de Power BI (Power BI Service).
+                        </p>
+                    </div>
+
+                    <!-- Pestañas -->
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+                        <h5 class="text-xl font-semibold text-white mb-4 flex items-center gap-2">
+                            <span class="text-2xl">🔹</span> Contiene dos pestañas:
+                        </h5>
+                        
+                        <!-- Simulación de pestañas -->
+                        <div class="border-b border-gray-600 mb-6">
+                            <div class="flex space-x-1">
+                                <button class="tab-button active">🕓 Recientes</button>
+                                <button class="tab-button">👥 Compartido conmigo</button>
+                            </div>
+                        </div>
+
+                        <!-- Grid de pestañas con imágenes -->
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            
+                            <!-- Pestaña Recientes -->
+                            <div class="space-y-4">
+                                <div class="flex justify-center">
+                                    <figure class="flex flex-col items-center bg-gray-900 rounded-xl p-4 border border-gray-600 shadow-xl w-full">
+                                        <img src="images/recientes-tab.jpg" 
+                                             alt="Pestaña Recientes" 
+                                             class="rounded-lg w-full h-auto object-contain border border-gray-500"
+                                             onerror="this.src='https://placehold.co/400x250/1f2937/fbbf24?text=🕓+Recientes'; this.onerror=null;">
+                                        <figcaption class="text-center text-gray-400 text-xs mt-2 font-mono-report">/ Pestaña: Recientes /</figcaption>
+                                    </figure>
+                                </div>
+                                
+                                <div class="bg-gray-700 p-4 rounded-lg">
+                                    <h6 class="text-lg font-semibold text-blue-300 mb-2 flex items-center gap-2">
+                                        <span class="text-xl">🕓</span> Recientes:
+                                    </h6>
+                                    <ul class="space-y-2 text-gray-200 text-sm">
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-400 mt-1">•</span>
+                                            <span>Aquí aparecen los archivos .pbix que abriste o guardaste recientemente en tu equipo.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-400 mt-1">•</span>
+                                            <span>Es una forma rápida de volver a trabajar en tus proyectos sin tener que buscarlos manualmente en las carpetas.</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-400 mt-1">•</span>
+                                            <span><strong class="text-blue-300">También muestra la ruta</strong> donde está guardado cada archivo y la fecha de la última modificación.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Pestaña Compartido conmigo -->
+                            <div class="space-y-4">
+                                <div class="flex justify-center">
+                                    <figure class="flex flex-col items-center bg-gray-900 rounded-xl p-4 border border-gray-600 shadow-xl w-full">
+                                        <img src="images/compartido-tab.jpg" 
+                                             alt="Pestaña Compartido conmigo" 
+                                             class="rounded-lg w-full h-auto object-contain border border-gray-500"
+                                             onerror="this.src='https://placehold.co/400x250/1f2937/10b981?text=👥+Compartido'; this.onerror=null;">
+                                        <figcaption class="text-center text-gray-400 text-xs mt-2 font-mono-report">/ Pestaña: Compartido conmigo /</figcaption>
+                                    </figure>
+                                </div>
+                                
+                                <div class="bg-gray-700 p-4 rounded-lg">
+                                    <h6 class="text-lg font-semibold text-blue-300 mb-2 flex items-center gap-2">
+                                        <span class="text-xl">👥</span> Compartido conmigo:
+                                    </h6>
+                                    <ul class="space-y-2 text-gray-200 text-sm">
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-400 mt-1">•</span>
+                                            <span>Muestra los informes y paneles que otras personas te han compartido a través de Power BI Service (la plataforma web).</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <span class="text-blue-400 mt-1">•</span>
+                                            <span>Esto es útil cuando trabajas en equipo, ya que puedes acceder directamente a los proyectos colaborativos sin salir del entorno de Power BI Desktop.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tip -->
+                        <div class="mt-6 p-4 bg-gradient-to-r from-yellow-900/30 to-yellow-800/30 rounded-lg border border-yellow-600/50">
+                            <h6 class="text-lg font-semibold text-yellow-300 mb-2 flex items-center gap-2">
+                                <span class="text-xl">💡</span> Tip:
+                            </h6>
+                            <p class="text-gray-200 text-sm mb-2">Si no ves nada en esta sección, puede ser porque:</p>
+                            <ul class="space-y-1 text-gray-200 text-sm ml-4">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-yellow-400 mt-1">•</span>
+                                    <span>Es tu primera vez usando Power BI Desktop.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-yellow-400 mt-1">•</span>
+                                    <span>No has abierto archivos locales todavía.</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-yellow-400 mt-1">•</span>
+                                    <span>No tienes conexión con Power BI Service.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEPARADOR DE EVIDENCIA -->
+                <div class="my-12">
+                    <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                </div>
+
+                <!-- Evidencia 5: Barra Superior Derecha -->
+                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                    <!-- Columna de Imagen -->
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-4 border border-gray-700 shadow-2xl w-full">
+                            <img src="images/barra-superior-derecha.jpg" 
+                                 alt="Evidencia: Barra Superior Derecha de Power BI Desktop" 
+                                 class="rounded-lg w-full h-auto object-contain border border-gray-600"
+                                 onerror="this.src='https://placehold.co/500x200/1f2937/374151?text=Barra+Superior+Derecha'; this.onerror=null;">
+                            <figcaption class="text-center text-gray-400 text-sm mt-3 font-mono-report">/ Evidencia: Barra Superior Derecha /</figcaption>
+                        </figure>
+                    </div>
+                    <!-- Columna de Descripción -->
+                    <div class="w-full md:w-1/2">
+                        <h4 class="text-2xl font-semibold text-white mb-3 flex items-center gap-2">
+                            <span class="text-2xl">👤</span> Barra superior derecha
+                        </h4>
+                        <p class="text-lg leading-relaxed text-gray-200 text-justify mb-4">
+                            Ubicada en la esquina superior derecha de la ventana, esta barra muestra tu información de usuario y da acceso a funciones relacionadas con tu cuenta.
+                        </p>
+                        
+                        <!-- Qué muestra -->
+                        <div class="space-y-4">
+                            <div class="bg-gray-700 p-4 rounded-lg border-l-4 border-blue-500">
+                                <h6 class="text-lg font-semibold text-blue-300 mb-2 flex items-center gap-2">
+                                    <span class="text-xl">🔹</span> Qué muestra:
+                                </h6>
+                                <ul class="space-y-2 text-gray-200 text-sm">
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-400 mt-1">•</span>
+                                        <span><strong>Tu nombre completo y avatar</strong> (foto o iniciales)</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-400 mt-1">•</span>
+                                        <span>En tu caso: <strong class="text-NELLY ESMERALDA MARTÍNEZ PÉREZ</strong></span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-blue-400 mt-1">•</span>
+                                        <span>Esto indica que has iniciado sesión con tu cuenta de Microsoft o de organización (Microsoft 365)</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-gray-700 p-4 rounded-lg border-l-4 border-green-500">
+                                <h6 class="text-lg font-semibold text-green-300 mb-2 flex items-center gap-2">
+                                    <span class="text-xl">🔹</span> Qué puedes hacer desde ahí:
+                                </h6>
+                                <div class="space-y-3">
+                                    <div>
+                                        <strong class="text-green-300">Gestionar tu cuenta:</strong>
+                                        <p class="text-gray-200 text-sm">Puedes cerrar sesión o cambiar entre diferentes cuentas (por ejemplo, personal y empresarial).</p>
+                                    </div>
+                                    <div>
+                                        <strong class="text-green-300">Ver configuración de usuario:</strong>
+                                        <p class="text-gray-200 text-sm">Desde el menú que aparece al hacer clic en tu nombre, puedes revisar la información de inicio de sesión o preferencias de privacidad.</p>
+                                    </div>
+                                    <div>
+                                        <strong class="text-green-300">Conectar con Power BI Service:</strong>
+                                        <p class="text-gray-200 text-sm">Si estás conectada con tu cuenta de Microsoft, puedes publicar tus informes directamente en la nube para compartirlos con otros.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tip -->
+                            <div class="p-4 bg-gradient-to-r from-yellow-900/30 to-yellow-800/30 rounded-lg border border-yellow-600/50">
+                                <h6 class="text-lg font-semibold text-yellow-300 mb-2 flex items-center gap-2">
+                                    <span class="text-xl">💡</span> Tip:
+                                </h6>
+                                <p class="text-gray-200 text-sm">
+                                    Estar conectada te permite sincronizar tu trabajo entre Power BI Desktop y la versión en línea (app.powerbi.com), facilitando la colaboración y la publicación de dashboards.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEPARADOR DE EVIDENCIA -->
+                <div class="my-12">
+                    <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                </div>
+
+                <!-- Evidencia 6: Barra Inferior Izquierda -->
+                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                    <!-- Columna de Imagen -->
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-4 border border-gray-700 shadow-2xl w-full">
+                            <img src="images/barra-inferior-izquierda.jpg" 
+                                 alt="Evidencia: Barra Inferior Izquierda de Power BI Desktop" 
+                                 class="rounded-lg w-full h-auto object-contain border border-gray-600"
+                                 onerror="this.src='https://placehold.co/400x300/1f2937/374151?text=Barra+Inferior+Izquierda'; this.onerror=null;">
+                            <figcaption class="text-center text-gray-400 text-sm mt-3 font-mono-report">/ Evidencia: Barra Inferior Izquierda /</figcaption>
+                        </figure>
+                    </div>
+                    <!-- Columna de Descripción -->
+                    <div class="w-full md:w-1/2">
+                        <h4 class="text-2xl font-semibold text-white mb-3 flex items-center gap-2">
+                            <span class="text-2xl">⚙️</span> Barra inferior izquierda
+                        </h4>
+                        <p class="text-lg leading-relaxed text-gray-200 text-justify mb-4">
+                            Esta barra está en la esquina inferior izquierda de la pantalla de inicio y reúne accesos a funciones generales del programa.
+                        </p>
+                        
+                        <!-- Opciones disponibles -->
+                        <div class="space-y-4">
+                            <div class="bg-gray-700 p-4 rounded-lg border-l-4 border-purple-500">
+                                <h6 class="text-lg font-semibold text-purple-300 mb-3 flex items-center gap-2">
+                                    <span class="text-xl">🔹</span> Opciones disponibles:
+                                </h6>
+                                
+                                <div class="space-y-4">
+                                    <!-- Cerrar sesión -->
+                                    <div class="bg-gray-600 p-3 rounded-lg">
+                                        <h6 class="font-semibold text-white mb-2">Cerrar sesión</h6>
+                                        <p class="text-gray-200 text-sm mb-2">Permite desconectarte de tu cuenta actual (por ejemplo, si estás en un equipo compartido o cambias de usuario).</p>
+                                        <div class="p-2 bg-yellow-900/30 rounded border border-yellow-600/50">
+                                            <p class="text-yellow-200 text-xs flex items-center gap-1">
+                                                <span>💡</span> Si cierras sesión, no podrás acceder a funciones en línea como la publicación o los informes compartidos.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Opciones y configuración -->
+                                    <div class="bg-gray-600 p-3 rounded-lg">
+                                        <h6 class="font-semibold text-white mb-2">Opciones y configuración</h6>
+                                        <p class="text-gray-200 text-sm mb-2">Desde aquí puedes acceder al menú de configuración avanzada de Power BI Desktop, donde podrás:</p>
+                                        <ul class="space-y-1 text-gray-200 text-xs ml-4">
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-purple-400 mt-1">•</span>
+                                                <span>Cambiar el idioma de la interfaz</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-purple-400 mt-1">•</span>
+                                                <span>Configurar la actualización automática de datos</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-purple-400 mt-1">•</span>
+                                                <span>Administrar las conexiones a fuentes externas (Excel, SQL, etc.)</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-purple-400 mt-1">•</span>
+                                                <span>Ajustar las preferencias de privacidad y permisos de acceso a datos</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-purple-400 mt-1">•</span>
+                                                <span>Personalizar temas visuales o comportamientos del editor</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <!-- Acerca de -->
+                                    <div class="bg-gray-600 p-3 rounded-lg">
+                                        <h6 class="font-semibold text-white mb-2">Acerca de</h6>
+                                        <p class="text-gray-200 text-sm mb-2">Muestra información sobre:</p>
+                                        <ul class="space-y-1 text-gray-200 text-xs ml-4">
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-purple-400 mt-1">•</span>
+                                                <span>La versión actual de Power BI Desktop instalada</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-purple-400 mt-1">•</span>
+                                                <span>Enlaces para consultar documentación oficial y soporte técnico</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-purple-400 mt-1">•</span>
+                                                <span>Créditos de Microsoft y términos de licencia</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

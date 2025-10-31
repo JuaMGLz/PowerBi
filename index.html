@@ -86,6 +86,39 @@
             pointer-events: none;
             z-index: 0;
         }
+
+        .boton-powerbi {
+            background-color: #f2c811; /* color dorado tipo Power BI */
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(242, 200, 17, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .boton-powerbi:hover {
+            background-color: #d9b20e;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(242, 200, 17, 0.4);
+        }
+
+        .boton-powerbi:active {
+            transform: scale(0.98);
+        }
+
+        /* Icono para el botón */
+        .boton-powerbi::before {
+            content: "⚡";
+            font-size: 20px;
+        }
     </style>
 </head>
 <body class="text-gray-200">
@@ -114,6 +147,13 @@
                 POWER BI
             </h1>
             <p class="text-2xl text-blue-400 mt-1 font-mono-report">Práctica 1</p>
+            
+            <!-- Botón Power BI Desktop debajo de INVESTIGACIÓN -->
+            <div class="mt-6 flex justify-center">
+                <button class="boton-powerbi" onclick="abrirComputadora()">
+                    Power BI Desktop
+                </button>
+            </div>
         </header>
 
         <!-- Contenido Principal (Diseño de 2 columnas) -->
@@ -871,7 +911,13 @@
         </footer>
 
     </div>
+
+    <!-- JavaScript para el botón -->
+    <script>
+        function abrirComputadora() {
+            window.open("computadora.html", "_blank"); // abre en otra pestaña
+        }
+    </script>
+
 </body>
 </html>
-
-

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Carga Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de la fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Carga de fuente Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <title>Power BI Desktop - Práctica 1</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* gray-900 */
+        }
+        
+        .font-mono-report {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Estilo para el "ticker" de noticias */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: #000;
+            color: white;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid #374151;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        
+        .ticker-move {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: ticker 25s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-weight: 600;
+            font-family: 'Roboto Mono', monospace;
+            letter-spacing: 0.05em;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .live-text {
+            color: #ef4444;
+            font-weight: 700;
+            animation: pulse-text 1.5s infinite;
+        }
+        
+        @keyframes pulse-text {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        .main-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)),
+                              url(https://placehold.co/10x10/000000/FFF?text=.&css=%7B%22opacity%22%3A%220.02%22%7D);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .boton-regresar {
+            background-color: #f2c811;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(242, 200, 17, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .boton-regresar:hover {
+            background-color: #d9b20e;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(242, 200, 17, 0.4);
+        }
+
+        .boton-regresar:active {
+            transform: scale(0.98);
+        }
+
+        .boton-regresar::before {
+            content: "←";
+            font-size: 20px;
+        }
+
+        /* Estilos para las tarjetas de funcionalidades */
+        .feature-card {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            border: 1px solid #4b5563;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <!-- Ticker de Noticias -->
+    <div class="ticker-wrap shadow-lg">
+        <div class="ticker-move">
+            <span class="ticker-item"><span class="live-text mr-2">// EN VIVO</span> TÓPICOS DE TECNOLOGÍAS DE DATOS</span>
+            <span class="ticker-item">CASO DE ESTUDIO: POWER BI</span>
+            <span class="ticker-item">UAEM VALLE DE CHALCO - 9NO SEMESTRE</span>
+            <span class="ticker-item"><span class="live-text mr-2">// EN VIVO</span> TÓPICOS DE TECNOLOGÍAS DE DATOS</span>
+            <span class="ticker-item">CASO DE ESTUDIO: POWER BI</span>
+            <span class="ticker-item">UAEM VALLE DE CHALCO - 9NO SEMESTRE</span>
+        </div>
+    </div>
+
+    <!-- Contenedor Principal -->
+    <div class="container main-container mx-auto max-w-6xl p-5 mt-8 relative">
+        
+        <!-- Cabecera y Título -->
+        <header class="mb-8 p-6 bg-gray-800 rounded-lg shadow-xl border-t-4 border-blue-500 relative overflow-hidden">
+            <span class="font-mono-report absolute top-3 right-5 text-yellow-400 text-sm font-bold opacity-75 tracking-wider">
+                [ INVESTIGACIÓN ]
+            </span>
+            <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight">
+                POWER BI
+            </h1>
+            <p class="text-2xl text-blue-400 mt-1 font-mono-report">Práctica 1</p>
+            
+            <!-- Botón Regresar centrado -->
+            <div class="mt-6 flex justify-center">
+                <button class="boton-regresar" onclick="window.close()">
+                    Regresar
+                </button>
+            </div>
+        </header>
+
+        <!-- Contenido Principal -->
+        <div class="flex flex-col lg:flex-row gap-8 lg:items-start">
+
+            <!-- Columna de Información (Izquierda) - "El Expediente" -->
+            <aside class="lg:w-1/3 w-full bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700">
+                <h3 class="font-mono-report text-xl text-blue-400 font-bold mb-4 border-b border-blue-900 pb-2">
+                    / FICHA DE CASO /
+                </h3>
+                <div class="space-y-4 text-white">
+                    <div>
+                        <strong class="block text-gray-400 text-sm font-mono-report">UNIVERSIDAD:</strong>
+                        <span>UAEM Valle de Chalco</span>
+                    </div>
+                    <div>
+                        <strong class="block text-gray-400 text-sm font-mono-report">UNIDAD DE APRENDIZAJE:</strong>
+                        <span>Tópicos de tecnologías de datos</span>
+                    </div>
+                    <div>
+                        <strong class="block text-gray-400 text-sm font-mono-report">LICENCIATURA:</strong>
+                        <span>Ingeniería en Tecnologías de la Información</span>
+                    </div>
+                    <div>
+                        <strong class="block text-gray-400 text-sm font-mono-report">SEMESTRE:</strong>
+                        <span>9no Semestre</span>
+                    </div>
+                    <div>
+                        <strong class="block text-gray-400 text-sm font-mono-report">DOCENTE:</strong>
+                        <span>Dra. en T.I.E. Adriana Bustamante Almaraz</span>
+                    </div>
+                    
+                    <!-- Sección Alumnos -->
+                    <div class="border-t border-gray-700 pt-4 mt-4">
+                        <strong class="block text-gray-400 text-sm font-mono-report mb-2">ESTUDIANTES:</strong>
+                        <ul class="list-none space-y-1">
+                            <li><span class="text-blue-400 mr-2">&gt;</span> González Espinosa, Juan Manuel</li>
+                            <li><span class="text-blue-400 mr-2">&gt;</span> Martínez Pérez, Nelly Esmeralda</li>
+                            <li><span class="text-blue-400 mr-2">&gt;</span> Pérez Paredes, Angel Luis</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Columna de Contenido (Derecha) - "El Informe" -->
+            <main class="lg:w-2/3 w-full">
+                <!-- Sección de Introducción -->
+                <article class="bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl border border-gray-700">
+                    <h2 class="text-3xl font-bold text-white mb-4 border-b-2 border-blue-500 pb-2">
+                        Introducción
+                    </h2>
+                    <div class="text-lg leading-relaxed text-gray-200 space-y-5 text-justify">
+                        <p>
+                            <strong class="text-blue-300 font-semibold">Power BI Desktop</strong> es una herramienta de análisis y visualización de datos desarrollada por Microsoft, que permite transformar grandes volúmenes de información en gráficas, reportes interactivos y paneles dinámicos.
+                        </p>
+                        <p>
+                            Su objetivo principal es ayudar a las empresas y usuarios a tomar decisiones basadas en datos, presentando la información de manera clara, visual y comprensible.
+                        </p>
+                        <p>
+                            Con Power BI Desktop, puedes conectar diferentes fuentes de datos (como Excel, bases de datos SQL, servicios web o archivos CSV), limpiar y transformar la información, y luego crear visualizaciones que facilitan el análisis de tendencias, comparaciones y resultados.
+                        </p>
+                        
+                        <div class="mt-8 pt-6 border-t border-gray-700">
+                            <h3 class="text-xl font-semibold text-white mb-4">Principales Ventajas:</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-3">
+                                    <span class="text-2xl">🔗</span>
+                                    <p><strong class="text-blue-300">Conexión con múltiples orígenes de datos</strong> (locales y en la nube).</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-2xl">⚙️</span>
+                                    <p><strong class="text-blue-300">Transformación y modelado de datos</strong> mediante el lenguaje Power Query.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-2xl">📊</span>
+                                    <p><strong class="text-blue-300">Creación de dashboards personalizados</strong> con gráficos, mapas, indicadores y más.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-2xl">📤</span>
+                                    <p><strong class="text-blue-300">Integración con Power BI Service</strong>, lo que permite publicar y compartir informes en línea.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </div>
+
+        <!-- Sección de Evidencias de Power BI Desktop -->
+        <article class="bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl border border-gray-700 mt-8">
+            <h2 class="text-3xl font-bold text-white mb-4 border-b-2 border-blue-500 pb-2">
+                Evidencias de Power BI Desktop
+            </h2>
+            <div class="text-lg leading-relaxed text-gray-200 space-y-5 text-justify">
+                <p>
+                    A continuación se presentan las capturas de pantalla y evidencias del uso de Power BI Desktop para la creación de informes y análisis de datos.
+                </p>
+            </div>
+            
+            <!-- Área de contenido para evidencias -->
+            <div id="desktop-evidence-area" class="mt-6 pt-6 border-t border-gray-700 space-y-8">
+                
+                <!-- Evidencia 1: Pantalla de Inicio -->
+                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                    <!-- Columna de Imagen -->
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-4 border border-gray-700 shadow-2xl w-full">
+                            <img src="images/24.jpg" 
+                                 alt="Evidencia: Pantalla de Inicio de Power BI Desktop" 
+                                 class="rounded-lg w-full h-auto object-contain border border-gray-600"
+                                 onerror="this.src='https://placehold.co/800x600/1f2937/374151?text=Error+al+cargar+Img-24.jpg'; this.onerror=null;">
+                            <figcaption class="text-center text-gray-400 text-sm mt-3 font-mono-report">/ Evidencia: Pantalla de Inicio /</figcaption>
+                        </figure>
+                    </div>
+                    <!-- Columna de Descripción -->
+                    <div class="w-full md:w-1/2">
+                        <h4 class="text-2xl font-semibold text-white mb-3">
+                            Pantalla de inicio
+                        </h4>
+                        <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                            Al abrir Power BI Desktop, se muestra la pantalla de inicio, que es el punto de partida para crear o abrir proyectos de análisis de datos. Esta interfaz está diseñada para que el usuario pueda acceder rápidamente a sus informes, conectarse a fuentes de datos o comenzar desde cero.
+                        </p>
+                        <div class="mt-4 p-4 bg-gray-700 rounded-lg border-l-4 border-blue-500">
+                            <p class="text-sm text-gray-300">
+                                <strong class="text-blue-300">Funcionalidades principales:</strong> Crear informes en blanco, conectar a diferentes orígenes de datos (Excel, SQL Server, OneLake), acceder a informes recientes y contenido compartido.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEPARADOR DE EVIDENCIA -->
+                <div class="my-12">
+                    <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                </div>
+
+                <!-- Evidencia 2: Menú Lateral Izquierdo -->
+                <div class="flex flex-col md:flex-row gap-8 items-center md:items-start">
+                    <!-- Columna de Imagen -->
+                    <div class="w-full md:w-1/2 flex justify-center">
+                        <figure class="flex flex-col items-center bg-gray-900 rounded-2xl p-4 border border-gray-700 shadow-2xl w-full">
+                            <img src="images/menu-lateral.jpg" 
+                                 alt="Evidencia: Menú Lateral Izquierdo de Power BI Desktop" 
+                                 class="rounded-lg w-full h-auto object-contain border border-gray-600"
+                                 onerror="this.src='https://placehold.co/400x600/1f2937/374151?text=Menú+Lateral+Izquierdo'; this.onerror=null;">
+                            <figcaption class="text-center text-gray-400 text-sm mt-3 font-mono-report">/ Evidencia: Menú Lateral Izquierdo /</figcaption>
+                        </figure>
+                    </div>
+                    <!-- Columna de Descripción -->
+                    <div class="w-full md:w-1/2">
+                        <h4 class="text-2xl font-semibold text-white mb-3">
+                            Menú lateral izquierdo
+                        </h4>
+                        <p class="text-lg leading-relaxed text-gray-200 text-justify mb-4">
+                            El menú lateral izquierdo de Power BI Desktop proporciona acceso rápido a las funciones principales de navegación y configuración de la aplicación.
+                        </p>
+                        
+                        <!-- Funcionalidades del menú -->
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 p-3 bg-gray-700 rounded-lg">
+                                <span class="feature-icon">📁</span>
+                                <div>
+                                    <strong class="text-blue-300">Inicio:</strong>
+                                    <p class="text-sm text-gray-300">Te lleva a la página principal (la que se muestra en la imagen).</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-gray-700 rounded-lg">
+                                <span class="feature-icon">📂</span>
+                                <div>
+                                    <strong class="text-blue-300">Abrir:</strong>
+                                    <p class="text-sm text-gray-300">Permite acceder a archivos .pbix que ya hayas creado.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-gray-700 rounded-lg">
+                                <span class="feature-icon">⚙️</span>
+                                <div>
+                                    <strong class="text-blue-300">Opciones inferiores:</strong>
+                                    <p class="text-sm text-gray-300">Cerrar sesión, Configuración y Acerca de Power BI Desktop.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEPARADOR DE EVIDENCIA -->
+                <div class="my-12">
+                    <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                </div>
+
+                <!-- Evidencia 3: Área Principal - Selección de Origen de Datos -->
+                <div class="flex flex-col gap-8">
+                    <!-- Título y descripción general -->
+                    <div class="text-center">
+                        <h4 class="text-2xl font-semibold text-white mb-3">
+                            Área principal — Selección de origen de datos
+                        </h4>
+                        <p class="text-lg leading-relaxed text-gray-200 text-justify">
+                            En la parte superior central se muestran varias opciones para comenzar un nuevo informe, cada una diseñada para diferentes tipos de fuentes de datos y necesidades de análisis.
+                        </p>
+                    </div>
+
+                    <!-- Grid de opciones de origen de datos -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <!-- Informe en blanco -->
+                        <div class="feature-card p-6 rounded-xl">
+                            <div class="flex flex-col items-center text-center space-y-4">
+                                <div class="w-full h-48 bg-gray-900 rounded-lg border border-gray-600 flex items-center justify-center">
+                                    <img src="images/24.jpg" 
+                                         alt="Informe en blanco" 
+                                         class="w-full h-full object-cover rounded-lg"
+                                         onerror="this.src='https://placehold.co/300x200/1f2937/fbbf24?text=📄+Informe+en+Blanco'; this.onerror=null;">
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <span class="feature-icon">🟨</span>
+                                        <h5 class="text-lg font-semibold text-white">Informe en blanco</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-300">Crea un nuevo proyecto vacío para comenzar desde cero.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Catálogo de OneLake -->
+                        <div class="feature-card p-6 rounded-xl">
+                            <div class="flex flex-col items-center text-center space-y-4">
+                                <div class="w-full h-48 bg-gray-900 rounded-lg border border-gray-600 flex items-center justify-center">
+                                    <img src="images/onelake.jpg" 
+                                         alt="Catálogo de OneLake" 
+                                         class="w-full h-full object-cover rounded-lg"
+                                         onerror="this.src='https://placehold.co/300x200/1f2937/3b82f6?text=🌐+OneLake'; this.onerror=null;">
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <span class="feature-icon">🌐</span>
+                                        <h5 class="text-lg font-semibold text-white">Catálogo de OneLake</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-300">Conecta con datos almacenados en la nube de Microsoft.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Libro de Excel -->
+                        <div class="feature-card p-6 rounded-xl">
+                            <div class="flex flex-col items-center text-center space-y-4">
+                                <div class="w-full h-48 bg-gray-900 rounded-lg border border-gray-600 flex items-center justify-center">
+                                    <img src="images/excel.jpg" 
+                                         alt="Libro de Excel" 
+                                         class="w-full h-full object-cover rounded-lg"
+                                         onerror="this.src='https://placehold.co/300x200/1f2937/10b981?text=📊+Excel'; this.onerror=null;">
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <span class="feature-icon">📊</span>
+                                        <h5 class="text-lg font-semibold text-white">Libro de Excel</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-300">Importa información directamente desde un archivo de Excel.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SQL Server -->
+                        <div class="feature-card p-6 rounded-xl">
+                            <div class="flex flex-col items-center text-center space-y-4">
+                                <div class="w-full h-48 bg-gray-900 rounded-lg border border-gray-600 flex items-center justify-center">
+                                    <img src="images/sql-server.jpg" 
+                                         alt="SQL Server" 
+                                         class="w-full h-full object-cover rounded-lg"
+                                         onerror="this.src='https://placehold.co/300x200/1f2937/f59e0b?text=🧱+SQL+Server'; this.onerror=null;">
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <span class="feature-icon">🧱</span>
+                                        <h5 class="text-lg font-semibold text-white">SQL Server</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-300">Conecta Power BI con bases de datos SQL.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Datos de muestra -->
+                        <div class="feature-card p-6 rounded-xl">
+                            <div class="flex flex-col items-center text-center space-y-4">
+                                <div class="w-full h-48 bg-gray-900 rounded-lg border border-gray-600 flex items-center justify-center">
+                                    <img src="images/datos-muestra.jpg" 
+                                         alt="Datos de muestra" 
+                                         class="w-full h-full object-cover rounded-lg"
+                                         onerror="this.src='https://placehold.co/300x200/1f2937/8b5cf6?text=📈+Datos+Muestra'; this.onerror=null;">
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <span class="feature-icon">📈</span>
+                                        <h5 class="text-lg font-semibold text-white">Empezar con datos de muestra</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-300">Permite practicar con datos predefinidos.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Otros orígenes -->
+                        <div class="feature-card p-6 rounded-xl">
+                            <div class="flex flex-col items-center text-center space-y-4">
+                                <div class="w-full h-48 bg-gray-900 rounded-lg border border-gray-600 flex items-center justify-center">
+                                    <img src="images/otros-origenes.jpg" 
+                                         alt="Otros orígenes de datos" 
+                                         class="w-full h-full object-cover rounded-lg"
+                                         onerror="this.src='https://placehold.co/300x200/1f2937/ef4444?text=➕+Otros+Orígenes'; this.onerror=null;">
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center justify-center gap-2">
+                                        <span class="feature-icon">➕</span>
+                                        <h5 class="text-lg font-semibold text-white">Obtener datos de otros orígenes</h5>
+                                    </div>
+                                    <p class="text-sm text-gray-300">Acceso a una amplia variedad de fuentes de datos adicionales (archivos, servicios web, bases de datos, etc.).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- SEPARADOR DE EVIDENCIA -->
+                <div class="my-12">
+                    <div class="h-1 w-full max-w-md mx-auto bg-gradient-to-r from-gray-800 via-blue-500 to-gray-800 rounded-full"></div>
+                </div>
+
+                <!-- Placeholder para futuras evidencias -->
+                <div class="text-center py-8">
+                    <p class="text-gray-500 font-mono-report">/ Más evidencias de Power BI Desktop - En desarrollo /</p>
+                </div>
+                
+            </div>
+        </article>
+
+        <!-- Pie de página -->
+        <footer class="text-center mt-12 mb-6 text-gray-600 text-sm font-mono-report">
+            <p>// POWER BI DESKTOP // 2025 //</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
